@@ -21,6 +21,7 @@
     - Create a cpp file for each task.
     - **The file name should be TaskXX.cpp where XX is the task number**<br> e.g. Task01.cpp, Task12.cpp etc. 
     - Copy your solution into the file.
+    - Solutions should be in the following directory: **Sem.XX/Pract.XX/Student's Solutions/\<First Name\> \<Family Name\>/** where XX is the practicum number.
 
 6. Commit a solution to a task
     - Commit the file for the task.
