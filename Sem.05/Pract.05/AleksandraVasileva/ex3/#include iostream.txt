@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+void removeValue(int arr[], int& size, int position) {
+    
+    while (position > size || position <= 0) {
+        cout << "Position is out of range! Enter a new one!" << endl;
+        cin >> position;
+    }
+
+    
+    for (int i = position - 1; i < size - 1; i++) {
+        arr[i] = arr[i + 1];
+    }
+
+    
+    --size;
+}
+
+int main() {
+    int arr[1000] = { 1, 2, 3, 4, 5 };  
+    int size = 5;
+    int poss; 
+
+   
+    cout << "Enter the position of the element you want to remove: ";
+    cin >> poss;
+
+    
+    removeValue(arr, size, poss);
+
+
+    cout << "New array after removal: ";
+    for (int i = 0; i < size; i++) {
+        cout << arr[i] << " ";
+    }
+
+    return 0;
+}
