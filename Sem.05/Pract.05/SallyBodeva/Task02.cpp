@@ -4,50 +4,42 @@
 #include <iostream>
 using namespace std;
 
-int minAndMaxOfArray(int arr[], int size, int& minElement, int& maxElement) {
+const int MATRIX_SIZE = 3;
 
-	 minElement = arr[0];
-	 maxElement = arr[0];
+void printMainDiagonal(int matrix[MATRIX_SIZE][MATRIX_SIZE]) {
 
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < MATRIX_SIZE; i++)
 	{
-		if (arr[i] < minElement) {
-			minElement = arr[i];
-		}
-		if (arr[i] > maxElement)
+		for (int j = 0; j < MATRIX_SIZE; j++)
 		{
-			maxElement = arr[i];
+			if (i==j)
+			{
+				cout << matrix[i][j] << " ";
+			}
 		}
-
 	}
 
-	return 0;
 }
 
-void readArray(int arr[], int size) {
+void printSecondDiagonal(int matrix[MATRIX_SIZE][MATRIX_SIZE]) {
 
-	cout << "Enter " << size << " elements: ";
-	for (int i = 0; i < size; i++) {
-		cin >> arr[i];
+	for (int i = 0; i < MATRIX_SIZE; i++)
+	{
+		for (int j = 0; j < MATRIX_SIZE; j++)
+		{
+			if ()
+			{
+				cout << matrix[i][j] << " ";
+			}
+		}
 	}
+
 }
 
 int main()
 {
-	int minElement = 0;
-	int maxElement = 0;
+	int matrix[3][3] = { {1, 2, 3}, {4, 5,6}, {7, 8, 9} };
 
-	cout << "Please, enter the size of the array: ";
-	int size;
-	cin >> size;
-
-	int arr[100] = {};
-
-	readArray(arr,size);
-	
-	minAndMaxOfArray(arr, size, minElement, maxElement);
-
-	cout << "Min element: " << minElement << endl;
-	cout << "Max element: " << maxElement << endl;
+	//printDiagonal(matrix);
 
 }
