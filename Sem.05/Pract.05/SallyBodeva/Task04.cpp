@@ -4,57 +4,26 @@
 #include <iostream>
 using namespace std;
 
-void elementsInRange(int arr[], int arrSize, int result[], int a, int b) {
+const int MATRIZ_SIZE = 3;
 
-	int insertIndex = 0;
-	for (int i = 0; i < arrSize; i++)
+bool isTriangle(int matrix[][MATRIZ_SIZE]) {
+
+
+	for (int i = 0; i < MATRIZ_SIZE; i++)
 	{
-		if (arr[i] >= a && arr[i] <= b) {
-			result[insertIndex] = arr[i];
-			insertIndex++;
+		for (int j = 0; j < MATRIZ_SIZE; j++)
+		{
+			if (i> j && matrix[i][j] != 0)
+			{
+				return false;
+			}
 		}
 	}
+	return true;
 }
-
-void readArray(int arr[], int size) {
-
-	cout << "Enter " << size << " elements: ";
-	for (int i = 0; i < size; i++) {
-		cin >> arr[i];
-	}
-}
-
-void printArray(int arr[], int size) {
-
-	for (int i = 0; i < size; i++)
-	{
-		if (arr[i]!=0) {
-			cout << arr[i] << " ";
-		}
-	}
-}
-
 
 
 int main()
 {
-	int arr[100] = {};
-	int result[100] = {};
-	int size, a, b;
-	cout << "Enter the size of the array: ";
-	cin >> size;
-
-	readArray(arr, size);
-
-	cout << "Enter the left end point:";
-	cin >> a;
-
-	cout << "Enter the right end point:";
-	cin >> b;
-
-	elementsInRange(arr, size, result, a, b);
-
-	cout << "The elements in this range are: ";
-	printArray(result, size);
 
 }
