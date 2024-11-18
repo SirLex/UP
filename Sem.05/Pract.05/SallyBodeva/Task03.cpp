@@ -4,48 +4,38 @@
 #include <iostream>
 using namespace std;
 
-void removeAt(int arr[], int size, int index) {
+const int MATRIX_SIZE = 3;
 
-	for (int i = index; i < size-1; i++)
+void printMatrixInZigZigWay(int matrix[][MATRIX_SIZE]) {
+
+	int currenRow = 0;
+
+	for (int i = 0; i < MATRIX_SIZE; i++)
 	{
-		arr[i] = arr[i + 1];
+		if (currenRow % 2 == 0)
+		{
+			for (int j = 0; j < MATRIX_SIZE; j++)
+			{
+				cout << matrix[i][j]  << " ";
+			}
+		}
+		else
+		{
+			for (int j = MATRIX_SIZE-1; j >= 0; j--)
+			{
+				cout << matrix[i][j] << " ";
+			}
+		}
+		currenRow++;
+		cout << endl;
 	}
-	arr[size - 1] = 0;
-}
 
-void readArray(int arr[], int size) {
-
-	cout << "Enter " << size << " elements: ";
-	for (int i = 0; i < size; i++) {
-		cin >> arr[i];
-	}
-}
-
-void printArray(int arr[], int size) {
-
-	for (int i = 0; i < size; i++)
-	{
-		cout << arr[i] << " ";
-	}
 }
 
 
 int main()
 {
-	int size,index;
-	
-	cout << "Please, enter the size of the array: ";
-	cin >> size;
+	int matrix[3][3] = { {1, 2, 3}, {4, 5, 6}, {7, 8, 9} };
 
-	int arr[100] = {};
-	readArray(arr, size);
-
-	cout << "Please, enter the index of the element you would like to remove: ";
-	cin >> index;
-
-	removeAt(arr,size,index);
-	size--;
-
-	cout << "The result after removing the element: ";
-	printArray(arr,size);
+	printMatrixInZigZigWay(matrix);
 }
