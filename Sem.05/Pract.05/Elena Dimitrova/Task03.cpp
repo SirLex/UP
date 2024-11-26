@@ -1,16 +1,27 @@
 #include <iostream>
 using namespace std;
 
-const int SIZE = 100;
+const int SIZE = 1000;
 
-void deleteIndex(int arr[SIZE], int size, int index) {
+void readArray(int arr[], int size) {
+    cout << "Enter array: ";
+    for (int i = 0; i < size; i++) {
+        cin >> arr[i];
+    }
+}
+
+void deleteAtIndex(int* arr, int& size, int index) {
     int newSize = size - 1;
     for (int i = 0; i < newSize; i++) {
-        if (i >= index) {
+        if (i >= index - 1) {
             arr[i] = arr[i + 1];
         }
+        size = newSize;
     }
-    for (int j = 0; j < newSize; j++) {
+}
+
+void printArray(int* arr, int& size) {
+    for (int j = 0; j < size; j++) {
         cout << arr[j] << " ";
     }
 }
@@ -20,17 +31,16 @@ int main() {
     int index;
     int size;
 
-    cout << "Enter size of array:";
+    cout << "Enter size of array: ";
     cin >> size;
 
-    cout << "Enter array:";
-    for (int i = 0; i < size; i++) {
-        cin >> arr[i];
-    }
+    readArray(arr, size);
 
-    cout << "Enter index to delete:";
+    cout << "Enter index to delete: ";
     cin >> index;
 
-    deleteIndex(arr, size, index);
+
+    deleteAtIndex(arr, size, index);
+    printArray(arr, size);
     return 0;
 }
