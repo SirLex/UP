@@ -15,7 +15,7 @@ int minOfArr(int arr[], int size) {
 
 int maxOfArr(int arr[], int size) {
 	int max = arr[0];
-	for (int i = 0; i < size; i++) {
+	for (int i = 1; i < size; i++) {
 		if (max < arr[i]) {
 			max = arr[i];
 		}
@@ -23,11 +23,11 @@ int maxOfArr(int arr[], int size) {
 	return max;
 }
 
-int readArray(int arr[], int size) {
+void readArray(int arr[], int size) {
+	cout << "Enter array: ";
 	for (int i = 0; i < size; i++) {
 		cin >> arr[i];
 	}
-	return 0;
 }
 
 int main(){
@@ -41,4 +41,5 @@ int main(){
 
 	cout << "Min: " << minOfArr(arr, size) << endl;
 	cout << "Max: " << maxOfArr(arr, size);
+ return 0;
 }
