@@ -1,23 +1,33 @@
 #include <iostream>
 using namespace std;
 
-const int SIZE = 100;
+const int SIZE = 1000;
 
-int longestRowInArr(int arr[], int size) {
-	int currentRow = 0;
-	int longestRow = 0;
+void readArray(int arr[], int size) {
+	cout << "Enter array: ";
 	for (int i = 0; i < size; i++) {
+		cin >> arr[i];
+	}
+}
+
+int longestDecrecingSubarrayLength(int arr[], int size) {
+	int currentLongest = 1;
+	int newLongest = 1;
+	for (int i = 0; i < size - 1; i++) {
 		if (arr[i] > arr[i + 1]) {
-			currentRow++;
+			currentLongest++;
 		}
 		else {
-			if (currentRow > longestRow) {
-				longestRow = currentRow;
+			if (currentLongest > newLongest) {
+				newLongest = currentLongest;
 			}
-			currentRow = 1;
+			currentLongest = 1;
 		}
 	}
-	return longestRow;
+	if (currentLongest > newLongest) {
+		newLongest = currentLongest;
+	}
+	return newLongest;
 }
 
 int main() {
@@ -27,11 +37,8 @@ int main() {
 	cout << "Enter size of array: ";
 	cin >> size;
 
-	cout << "Enter array: ";
-	for (int i = 0; i < size; i++) {
-		cin >> arr[i];
-	}
+	readArray(arr, size);
 
-	cout << longestRowInArr(arr, size);
+	cout << longestDecrecingSubarrayLength(arr, size);
 	return 0;
 }
