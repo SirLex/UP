@@ -1,12 +1,19 @@
 #include <iostream>
 using namespace std;
 
-const int SIZE = 100;
+const int SIZE = 1000;
+
+void readArray(int arr[], int size) {
+	cout << "Enter array: ";
+	for (int i = 0; i < size; i++) {
+		cin >> arr[i];
+	}
+}
 
 int longestRowInArr(int arr[], int size) {
-	int currentSequence = 0;
-	int longestSequence = 0;
-	for (int i = 0; i < size; i++) {
+	int currentSequence = 1;
+	int longestSequence = 1;
+	for (int i = 0; i < size - 1; i++) {
 		if (arr[i] == arr[i + 1]) {
 			currentSequence++;
 		}
@@ -16,6 +23,9 @@ int longestRowInArr(int arr[], int size) {
 			}
 			currentSequence = 1;
 		}
+	}
+	if (currentSequence > longestSequence) {
+		longestSequence = currentSequence;
 	}
 	return longestSequence;
 }
@@ -27,10 +37,7 @@ int main() {
 	cout << "Enter size of array: ";
 	cin >> size;
 
-	cout << "Enter array: ";
-	for (int i = 0; i < size; i++) {
-		cin >> arr[i];
-	}
+	readArray(arr, size);
 
 	cout << longestRowInArr(arr, size);
 	return 0;
