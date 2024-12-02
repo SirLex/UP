@@ -1,54 +1,101 @@
-// Task06.cpp : This file contains the 'main' function. Program execution begins and ends there.
+﻿// Task06.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
 #include <iostream>
 using namespace std;
 
-int longestDescendingSequence(int arr[], int size) {
+const int MATRIX_SIZE = 4;
 
-	int countCurrent = 1;
-	int countLongest = 1;
+bool isTheMatrixMagical(int matrix[MATRIX_SIZE][MATRIX_SIZE]) {
 
-	for (int i = 0; i < size - 1; i++)
+	int sumOfRows = 0;
+
+	for (int i = 0; i < MATRIX_SIZE; i++)
 	{
-		if (arr[i] > arr[i + 1])
+		sumOfRows += matrix[0][i];
+	}
+
+	for (int i = 1; i < MATRIX_SIZE; i++)
+	{
+		int currentRowSum = 0;
+		for (int j = 0; j < MATRIX_SIZE; j++)
 		{
-			countCurrent++;
+			currentRowSum += matrix[i][j];
 		}
-		else
+		if (currentRowSum != sumOfRows)
 		{
-			if (countCurrent > countLongest)
+			return false;
+		}
+	}
+
+	for (int i = 0; i < MATRIX_SIZE; i++)
+	{
+		int currentColSum = 0;
+		for (int j = 0; j < MATRIX_SIZE; j++)
+		{
+			currentColSum += matrix[j][i];
+		}
+		if (currentColSum != sumOfRows)
+		{
+			return false;
+		}
+	}
+
+	int mainDiagonalSum = 0;
+	int secondDiagonalSum = 0;
+
+	for (int i = 0; i < MATRIX_SIZE; i++)
+	{
+		for (int j = 0; j < MATRIX_SIZE; j++)
+		{
+			if (i == j)
 			{
-				countLongest = countCurrent;
+				mainDiagonalSum += matrix[i][j];
 			}
-			countCurrent = 1;
+			if (MATRIX_SIZE - j - 1 == i)
+			{
+				secondDiagonalSum += matrix[i][j];;
+			}
 		}
 	}
-	if (countCurrent > countLongest)
+	if (mainDiagonalSum != sumOfRows || secondDiagonalSum != sumOfRows)
 	{
-		countLongest = countCurrent;
+		return false;
 	}
-	return countLongest;
+	
+	return true;
 }
 
-void readArray(int arr[], int size) {
 
-	cout << "Enter " << size << " elements: ";
-	for (int i = 0; i < size; i++) {
-		cin >> arr[i];
+void printMatrix(int matrix[MATRIX_SIZE][MATRIX_SIZE]) {
+
+	for (int i = 0; i < MATRIX_SIZE; i++)
+	{
+		for (int j = 0; j < MATRIX_SIZE; j++)
+		{
+			cout << matrix[i][j] << " ";
+		}
+		cout << endl;
+	}
+
+}
+void readMatrix(int matrix[MATRIX_SIZE][MATRIX_SIZE])
+{
+	for (int i = 0; i < MATRIX_SIZE; i++)
+	{
+		for (int j = 0; j < MATRIX_SIZE; j++)
+		{
+			cin >> matrix[i][j];
+		}
 	}
 }
 
 int main()
 {
-	int arr[100] = {};
+	int matrix[MATRIX_SIZE][MATRIX_SIZE];
 
-	cout << "Enter the size of the array: ";
-
-	int size;
-	cin >> size;
-
-	readArray(arr, size);
-
-	cout << "The longest descending sequence has length of " << longestDescendingSequence(arr,size);
+	readMatrix(matrix);
+		
+	cout << isTheMatrixMagical(matrix);
+	
 }

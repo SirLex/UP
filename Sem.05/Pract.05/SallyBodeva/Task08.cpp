@@ -1,62 +1,71 @@
-// Task08.cpp : This file contains the 'main' function. Program execution begins and ends there.
+﻿// Task08.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
 #include <iostream>
 using namespace std;
 
-void setToZero(int arr[],int size) {
+const int FIRST_MATRIX_ROWS_COUNT = 5;
+const int FIRST_MATRIX_COL_COUNT = 2;
 
-	for (int i = 0; i < size; i++)
+const int SECOND_MATRIX_ROWS_COUNT = 2;
+const int SECOND_MATRIX_COL_COUNT = 3;
+
+const int RESULT_MATRIX_ROWS_COUNT = 5;
+const int RESULT_MATRIX_COL_COUNT = 3;
+
+
+void multiplyMatrix(int matrix[][FIRST_MATRIX_COL_COUNT], int matrix2[][SECOND_MATRIX_COL_COUNT], int result[FIRST_MATRIX_ROWS_COUNT][SECOND_MATRIX_COL_COUNT]) {
+
+	for (int i = 0; i < FIRST_MATRIX_ROWS_COUNT; i++)
 	{
-		bool containsIndex = false;
-		int currentElement = arr[i];
-		while (currentElement != 0)
-		{
-			int lastDigit = currentElement % 10;
-			currentElement /= 10;
 
-			if (lastDigit == i) {
-				containsIndex = true;
-				break;
+		for (int j = 0; j < SECOND_MATRIX_COL_COUNT; j++)
+		{
+			for (int k = 0; k < FIRST_MATRIX_COL_COUNT; k++)
+			{
+				result[i][j] += matrix[i][k] * matrix2[k][j];
 			}
 		}
+	}
 
-		if (!containsIndex)
+}
+
+
+
+void readMatrix(int matrix[FIRST_MATRIX_ROWS_COUNT][FIRST_MATRIX_COL_COUNT])
+{
+	for (int i = 0; i < FIRST_MATRIX_COL_COUNT; i++)
+	{
+		for (int j = 0; j < FIRST_MATRIX_ROWS_COUNT; j++)
 		{
-			arr[i] = 0;
+			cin >> matrix[i][j];
 		}
 	}
 }
 
-void printArray(int arr[], int size) {
+void printMatrix(int matrix[][RESULT_MATRIX_COL_COUNT]) {
 
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < RESULT_MATRIX_ROWS_COUNT; i++)
 	{
-		cout << arr[i] << " ";
+		for (int j = 0; j < RESULT_MATRIX_COL_COUNT; j++)
+		{
+			cout << matrix[i][j] << " ";
+		}
+		cout << endl;
 	}
-}
 
-void readArray(int arr[], int size) {
-
-	cout << "Enter " << size << " elements: ";
-	for (int i = 0; i < size; i++) {
-		cin >> arr[i];
-	}
 }
 
 int main()
 {
-	int arr[100] = {};
+	int matrix1[FIRST_MATRIX_ROWS_COUNT][FIRST_MATRIX_COL_COUNT] = { {1,2},{8,9},{10,0},{1,0}, { 2,2 } };
+	int matrix2[SECOND_MATRIX_ROWS_COUNT][SECOND_MATRIX_COL_COUNT] = { {1,2,3},{4,5,2} };
 
-	cout << "Enter the size of the array: ";
+	int result[RESULT_MATRIX_ROWS_COUNT][RESULT_MATRIX_COL_COUNT] = {};
 
-	int size;
-	cin >> size;
+	multiplyMatrix(matrix1, matrix2, result);
 
-	readArray(arr, size);
-
-	setToZero(arr,size);
-
-	cout << "After setting the elements to 0: ";
-	printArray(arr, size);
+	printMatrix(result);
 }
+
+
