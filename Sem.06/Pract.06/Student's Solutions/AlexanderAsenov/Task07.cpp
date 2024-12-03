@@ -19,8 +19,6 @@ bool bitAtPos(unsigned int num, int pos) {
 
 void writeAllSubsets(int* arr, int length) {
 	int end = 0;
-	//0000000000
-	//1111111111
 	for (int i = 0; i < length; i++)
 	{
 		end = end << 1;
