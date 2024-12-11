@@ -3,19 +3,17 @@ using namespace std;
 
 const int MAX_SIZE = 1024;
 
-bool isWordContained(char* symbols, char* word, int symbolsLen) {
-    if (symbols == nullptr)
-    {
-        return false;
-    }
-    if (word == nullptr)
+bool isWordContained(char *symbols, char *word, int symbolsLen)
+{
+    if (symbols == nullptr || word == nullptr)
     {
         return false;
     }
 
     int counter = 0;
 
-    while (*word != '\0') {
+    while (*word != '\0')
+    {
         counter++;
         if (counter > symbolsLen)
         {
@@ -32,24 +30,24 @@ bool isWordContained(char* symbols, char* word, int symbolsLen) {
     return true;
 }
 
-bool doExist(char* symbols, char* word) {
-    if (symbols == nullptr)
+bool doExist(char *symbols, char *word)
+{
+    if (symbols == nullptr || word == nullptr)
     {
-        return 0;
-    }
-    if (word == nullptr)
-    {
-        return 0;
+        return false;
     }
 
     int counter = 0;
-    while (*symbols != '\0') {
+    while (*symbols != '\0')
+    {
         counter++;
         symbols++;
     }
     symbols--;
-    while (counter > 0) {
-        if (isWordContained(symbols, word, counter)) {
+    while (counter > 0)
+    {
+        if (isWordContained(symbols, word, counter))
+        {
             return true;
         }
         symbols--;
