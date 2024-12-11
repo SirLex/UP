@@ -3,18 +3,20 @@ using namespace std;
 
 const int MAX_SIZE = 1024;
 
-void GetWord(char str[], char result[]) {
+void GetWord(char str[], char result[])
+{
     if (str == nullptr || result == nullptr)
     {
         return;
     }
     int maxStartIndex = 0;
     int maxEndIndex = 0;
-    char* dummy = str;
+    char *dummy = str;
     int counter = 0;
     int currentIndex = 0;
-    while (*str != '\0') {
-        if (*str == ' ')
+    while (*str != '\0')
+    {
+        if (*str == ' ' || *str == '\t' || *str == '\n')
         {
             if (counter > maxEndIndex - maxStartIndex)
             {
@@ -23,7 +25,10 @@ void GetWord(char str[], char result[]) {
             }
             counter = 0;
         }
-        counter++;
+        else
+        {
+            counter++;
+        }
         currentIndex++;
         str++;
     }
@@ -33,13 +38,15 @@ void GetWord(char str[], char result[]) {
         maxStartIndex = currentIndex - counter;
     }
 
-    while (maxStartIndex > 0) {
+    while (maxStartIndex > 0)
+    {
         dummy++;
         maxEndIndex--;
         maxStartIndex--;
     }
 
-    while (maxEndIndex > 0) {
+    while (maxEndIndex > 0)
+    {
         *result = *dummy;
         result++;
         dummy++;
@@ -50,9 +57,9 @@ void GetWord(char str[], char result[]) {
 
 int main()
 {
-    char str[MAX_SIZE] = "hello alex";
+    char str[MAX_SIZE] = " hekk  dsadd    dadadd djksa\ndsa ";
     char result[MAX_SIZE];
-    
+
     GetWord(str, result);
 
     cout << result;
