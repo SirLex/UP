@@ -3,13 +3,15 @@ using namespace std;
 
 const int MAX_SIZE = 1024;
 
-int countSymbols(char arr[], char symbol) {
+int countSymbols(char arr[], char symbol)
+{
     if (arr == nullptr)
     {
-        return false;
+        return -1;
     }
     int counter = 0;
-    while (*arr != '\0') {
+    while (*arr != '\0')
+    {
         if (*arr == symbol)
         {
             counter++;
@@ -19,12 +21,14 @@ int countSymbols(char arr[], char symbol) {
     return counter;
 }
 
-bool contains(char arr[], char symbol) {
+bool contains(char arr[], char symbol)
+{
     if (arr == nullptr)
     {
         return false;
     }
-    while (*arr != '\0') {
+    while (*arr != '\0')
+    {
         if (*arr == symbol)
         {
             return true;
@@ -34,14 +38,15 @@ bool contains(char arr[], char symbol) {
     return false;
 }
 
-char* CheckStr(char arr[]) {
+void CheckStr(char arr[], char result[])
+{
     if (arr == nullptr)
     {
-        return nullptr;
+        return;
     }
-    char result[MAX_SIZE];
     int i = 0;
-    while (*arr != '\0') {
+    while (*arr != '\0')
+    {
         if (contains(result, *arr))
         {
             arr++;
@@ -55,11 +60,12 @@ char* CheckStr(char arr[]) {
         arr++;
     }
     result[i] = '\0';
-    return result;
 }
 
 int main()
 {
     char arr[MAX_SIZE] = "aabb";
-    cout<<CheckStr(arr);
+    char result[MAX_SIZE] = {};
+    CheckStr(arr, result);
+    cout << result;
 }
