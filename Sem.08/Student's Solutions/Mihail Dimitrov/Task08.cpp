@@ -3,7 +3,8 @@ using namespace std;
 
 const int SIZE = 3;
 
-double calculateMatrix(int matr[][SIZE], int m) {
+double calculateMatrix(int **matr, int m)
+{
     if (matr == nullptr || m < 0)
     {
         return -1;
@@ -18,12 +19,19 @@ double calculateMatrix(int matr[][SIZE], int m) {
 
 int main()
 {
-    int matrix[SIZE][SIZE];
+    int **matrix = new int *[SIZE];
+
+    for (int i = 0; i < SIZE; i++)
+    {
+        matrix[i] = new int[SIZE];
+    }
+
     for (size_t i = 0; i < SIZE; i++)
     {
-        for (size_t j = 0; j < SIZE; j++) {
+        for (size_t j = 0; j < SIZE; j++)
+        {
             matrix[i][j] = i * SIZE + j + 1;
-            cout << matrix[i][j]<< " ";
+            cout << matrix[i][j] << " ";
         }
         cout << endl;
     }
