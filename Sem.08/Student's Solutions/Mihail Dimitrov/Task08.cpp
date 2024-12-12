@@ -36,4 +36,9 @@ int main()
         cout << endl;
     }
     cout << calculateMatrix(matrix, SIZE);
+    for (int i = 0; i < SIZE; i++)
+    {
+        delete[] matrix[i];
+    }
+    delete[] matrix;
 }
