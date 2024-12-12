@@ -1,3 +1,5 @@
+#include <iostream>
+
 bool isWhiteSpace(char ch) {
 	return ch == ' ' || ch == '\t' || ch == '\n';
 }
@@ -16,19 +18,38 @@ void GetWord(char str[], char* result) {
 				longestWordBeg = str - longestWordLen;
 			}
 			currentWordLen = 0;
-		} else {
+		}
+		else {
 			currentWordLen++;
 		}
 
 		str++;
 	}
 
+	/* Check last word length */
+	if (currentWordLen > longestWordLen) {
+		longestWordLen = currentWordLen;
+		longestWordBeg = str - longestWordLen;
+	}
+
+
 	if (!longestWordBeg) return;
 
 	int resultIdx = 0;
-	while (!isWhiteSpace(*longestWordBeg)) {
+
+	/* Cannot check for white space because if longest
+	word is last word then no white space at the end */
+	while (longestWordLen > 0) {
 		result[resultIdx++] = *longestWordBeg;
 		longestWordBeg++;
+		longestWordLen--;
 	}
 	result[resultIdx] = '\0';
+}
+
+int main() {
+	char src[] = "hi my name is teodor angelovdichev";
+	char wor[64];
+	GetWord(src, wor);
+	std::cout << wor;
 }
