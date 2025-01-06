@@ -1,58 +1,56 @@
-// Task05.cpp : This file contains the 'main' function. Program execution begins and ends there.
+﻿// Task05.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
 #include <iostream>
 using namespace std;
 
-bool isSymmetrical(int arr[], int size) {
 
-	bool result = true;
-	int firstIndex = 0;
-	int lastIndex = size - 1;
+const int MATRIX_SIZE = 3;
 
-	while (true)
+void tranponMatrix(int matrix[][MATRIX_SIZE], int matrixResult[][MATRIX_SIZE]) {
+
+	for (int i = 0; i < MATRIX_SIZE; i++)
 	{
-		if (firstIndex == lastIndex || firstIndex > lastIndex) {
-			break;
+		for ( int j = 0; j < MATRIX_SIZE; j++)
+		{
+			matrixResult[j][i] = matrix[i][j];
 		}
-
-		if (arr[firstIndex] != arr[lastIndex]) {
-			result = false;
-			break;
-		}
-		firstIndex++;
-		lastIndex--;
 	}
-	return result;
+
 }
 
-void readArray(int arr[], int size) {
-
-	cout << "Enter " << size << " elements: ";
-	for (int i = 0; i < size; i++) {
-		cin >> arr[i];
+void readMatrix(int matrix[MATRIX_SIZE][MATRIX_SIZE])
+{
+	for (int i = 0; i < MATRIX_SIZE; i++)
+	{
+		for (int j = 0; j < MATRIX_SIZE; j++)
+		{
+			cin >> matrix[i][j];
+		}
 	}
+}
+
+void printMatrix(int matrix[MATRIX_SIZE][MATRIX_SIZE]) {
+
+	for (int i = 0; i < MATRIX_SIZE; i++)
+	{
+		for (int j = 0; j < MATRIX_SIZE; j++)
+		{
+			cout << matrix[i][j] << " ";
+		}
+		cout << endl;
+	}
+
 }
 
 int main()
 {
-	int arr[100] = {};
+	int matrix[MATRIX_SIZE][MATRIX_SIZE];
+	int matrixResult[MATRIX_SIZE][MATRIX_SIZE];
 
-	cout << "Enter the size of the array: ";
+	readMatrix(matrix);
 
-	int size;
-	cin >> size;
+	tranponMatrix(matrix,matrixResult);
 
-	readArray(arr, size);
-
-	cout << "Is this array symmetrical? " << endl;
-
-	if (isSymmetrical(arr,size))
-	{
-		cout << "-yes";
-	}
-	else
-	{
-		cout << "-no";
-	}
+	printMatrix(matrixResult);
 }

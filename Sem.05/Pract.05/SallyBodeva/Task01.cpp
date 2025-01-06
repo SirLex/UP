@@ -4,58 +4,40 @@
 #include <iostream>
 using namespace std;
 
-double avgOfArray(int arr[], int size, int& closets) {
+const int MATRIX_COL = 3;
 
-	int sum = 0;
 
-	for (int i = 0; i < size; i++)
+int findMinElement(int matrix[][MATRIX_COL], int rows) {
+
+	int min = matrix[0][0];
+
+	for (int i = 0; i < rows; i++)
 	{
-		sum += arr[i];
-	}
-	double avg = sum / (double)size;
-
-	double minDiff = (avg - arr[0] > 0) ? avg - arr[0] : (avg - arr[0]) * (-1);
-	closets = 0;
-
-	for (int i = 1; i < size; i++)
-	{
-		double currentDiff = (avg - arr[i] > 0) ? avg - arr[i] : (avg - arr[i]) * (-1);
-
-		if (currentDiff < minDiff)
+		for (int j = 0; j < 3; j++)
 		{
-			minDiff = avg - arr[i];
-			closets = arr[i];
+			if (matrix[i][j] < min)
+			{
+				min = matrix[i][j];
+			}
 		}
 	}
 
-	return avg;
-
-}
-void readArray(int arr[], int size) {
-
-	cout << "Enter " << size << " elements: ";
-	for (int i = 0; i < size; i++) {
-		cin >> arr[i];
-	}
+	return min;
 }
 
 int main()
 {
-	int arr[1000] = {};
-	int size;
-	int closestElement = 0;
+	int matrix[3][3]={};
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			int element;
+			cin >> element;
+			matrix[i][j] = element;
+		}
+	}
 
-	cout << "Enter the size of the array: ";
-	cin >> size;
-
-	readArray(arr, size);
-
-	double avg = avgOfArray(arr, size, closestElement);
-
-	cout << "The average value of the elements is " << avg << endl;
-	cout << "The element that is closest to the average is " << closestElement << endl;
-
-	return 0;
+	cout << findMinElement(matrix,3);
+	
 }
-
-
